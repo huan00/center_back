@@ -22,16 +22,21 @@ module.exports = (sequelize, DataTypes) => {
         through: models.UserFollower,
         foreignKey: 'followerId'
       })
+
+      User.belongsToMany(models.Message, {
+        as: 'followMsg',
+        through: models.FollowMessage,
+        foreignKey: 'userId'
+      })
     }
   }
   User.init(
     {
       email: DataTypes.STRING,
       firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
-      myAdvise: DataTypes.ARRAY,
-      following_userId: DataTypes.ARRAY,
-      adviseCollection: DataTypes.ARRAY
+      lastName: DataTypes.STRING
+      // myAdvise: DataTypes.ARRAY
+      // adviseCollection: DataTypes.ARRAY
     },
     {
       sequelize,

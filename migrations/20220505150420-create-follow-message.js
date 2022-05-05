@@ -1,7 +1,7 @@
 'use strict'
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('user_followers', {
+    await queryInterface.createTable('FollowMessages', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,11 +16,11 @@ module.exports = {
           key: 'id'
         }
       },
-      followerId: {
+      messageAdviseId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'users',
+          model: 'messages',
           key: 'id'
         }
       },
@@ -35,6 +35,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('user_followers')
+    await queryInterface.dropTable('FollowMessages')
   }
 }

@@ -1,27 +1,31 @@
 'use strict'
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('messages', {
+    await queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      message: {
+      email: {
         type: Sequelize.STRING
       },
-      userId: {
-        type: Sequelize.INTERGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'users',
-          key: 'id'
-        }
+      firstName: {
+        type: Sequelize.STRING
       },
-      categoryId: {
-        type: Sequelize.ARRAY
+      lastName: {
+        type: Sequelize.STRING
       },
+      // myAdvise: {
+      //   type: Sequelize.ARRAY
+      // },
+      // following_userId: {
+      //   type: Sequelize.ARRAY
+      // },
+      // adviseCollection: {
+      //   type: Sequelize.ARRAY
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -33,6 +37,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('messages')
+    await queryInterface.dropTable('users')
   }
 }
