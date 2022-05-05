@@ -1,4 +1,4 @@
-# Center
+# 😞 Center 😀
 
 ---
 
@@ -8,7 +8,7 @@
 
 ##### By: Huan Zeng
 
-[Website](Website) | [Linkedin](https://www.linkedin.com/in/huan-zeng/) | [Github](https://github.com/huan00/center_back)
+[Website](Website) | [Linkedin](https://www.linkedin.com/in/huan-zeng/) | [Github](https://github.com/huan00/center_back) | [Trello](https://trello.com/b/cXQCzaWt/center)
 
 ---
 
