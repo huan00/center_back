@@ -5,7 +5,9 @@ const controller = require('../controllers/UserController') //require the contro
 // router.get('', (req, res) => {
 //   res.send('this is ROOT')
 // })
+router.get('/userfollowing', controller.getUserFollowing)
 
 router.post('/signup', controller.signUp)
+router.post('/following/:id', controller.followUser)
 
 module.exports = router

@@ -1,5 +1,5 @@
 'use strict'
-const { Model } = require('sequelize')
+const { Model, INTEGER } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Message extends Model {
     /**
@@ -17,8 +17,13 @@ module.exports = (sequelize, DataTypes) => {
         through: models.FollowMessage
       })
 
-      Message.hasMany(models.Rating, { foreignKey: 'messageId' })
-      Message.hasMany(models.Category, { foreignKey: 'messageId' })
+      Message.hasMany(models.Rating, { foreignKey: 'messagesId' })
+
+      Message.belongsToMany(models.Category, {
+        foreignKey: 'messagesId',
+        as: 'messageCate',
+        through: models.MessageCategory
+      })
     }
   }
   Message.init(

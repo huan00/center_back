@@ -29,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'FollowMessage'
+      modelName: 'FollowMessage',
+      tableName: 'follow_messages'
     }
   )
   return FollowMessage

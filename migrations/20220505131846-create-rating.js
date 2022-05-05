@@ -9,9 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       rating: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
-      messageId: {
+      messagesId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {

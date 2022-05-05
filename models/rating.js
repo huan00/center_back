@@ -9,13 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Rating.belongsTo(models.Message, { foreignKey: 'messageId' })
+      Rating.belongsTo(models.Message, { foreignKey: 'messagesId' })
     }
   }
   Rating.init(
     {
-      rating: DataTypes.INTEGER,
-      messageId: {
+      rating: { type: DataTypes.INTEGER, allowNull: false },
+      messagesId: {
+        allowNull: false,
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {

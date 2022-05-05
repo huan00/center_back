@@ -9,15 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       category: {
-        type: Sequelize.STRING
-      },
-      messageId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'messages',
-          key: 'id'
-        }
+        type: Sequelize.STRING,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
