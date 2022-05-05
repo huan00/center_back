@@ -23,9 +23,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Message.init(
     {
-      message: DataTypes.STRING,
+      message: { type: DataTypes.STRING, allowNull: false },
       userId: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         onDelete: 'CASCADE',
         references: {
           model: 'users',
