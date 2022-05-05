@@ -12,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Message, { foreignKey: 'userId' })
 
       User.belongsToMany(models.User, {
-        as: 'followers',
+        as: 'following',
         through: models.UserFollower,
         foreignKey: 'userId'
       })
 
       User.belongsToMany(models.User, {
-        as: 'following',
+        as: 'followers',
         through: models.UserFollower,
         foreignKey: 'followerId'
       })

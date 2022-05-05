@@ -58,7 +58,7 @@ const getMsgRateCate = async (req, res) => {
     const msg = await Message.findOne({
       where: { id: id },
       include: [
-        { model: Category, as: 'messageCate', atrributes: ['category'] },
+        { model: Category, as: 'messageCate', attributes: ['category'] },
         { model: Rating, attributes: ['rating'] }
       ]
     })
