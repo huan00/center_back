@@ -1,4 +1,4 @@
-const { User, UserFollower } = require('../models') //import the model
+const { User, UserFollower, Message } = require('../models') //import the model
 // const middleware = require('../middleware')
 
 const signUp = async (req, res) => {
@@ -14,7 +14,28 @@ const signUp = async (req, res) => {
   }
 }
 
-const followUser = async (req, res) => {
+////////Get////////
+
+const getUserMessage = async (req, res) => {
+  try {
+    const userId = req.params.id
+
+    const userMsg = await User.findOne({
+      where: { id: userId },
+      include: [{ model: Message, attrubites: ['message'] }]
+    })
+    if (userMsg) {
+      if (userMsg) {
+        return res.status(200).json(userMsg)
+      }
+    }
+    res.status(204).send({ msg: 'No content' })
+  } catch (error) {
+    throw error
+  }
+}
+
+const getFollowUser = async (req, res) => {
   try {
     const userId = req.params.id
     const { followerId } = req.body
@@ -54,4 +75,4 @@ const getUserFollowing = async (req, res) => {
   }
 }
 
-module.exports = { signUp, followUser, getUserFollowing }
+module.exports = { signUp, getFollowUser, getUserFollowing, getUserMessage }

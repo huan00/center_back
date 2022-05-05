@@ -1,4 +1,5 @@
-const { Message, MessageCategory, Category } = require('../models')
+const { Message, MessageCategory, Category, Rating } = require('../models')
+const rating = require('../models/rating')
 
 const newMessage = async (req, res) => {
   try {
@@ -50,4 +51,29 @@ const getMessageCategory = async (req, res) => {
   }
 }
 
-module.exports = { newMessage, messageCategory, getMessageCategory }
+const getMsgRateCate = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    const msg = await Message.findOne({
+      where: { id: id },
+      include: [
+        { model: Category, as: 'messageCate', atrributes: ['category'] },
+        { model: Rating, attributes: ['rating'] }
+      ]
+    })
+    if (msg) {
+      return res.status(200).json(msg)
+    }
+    res.status(400).send({ msg: 'Nothing found' })
+  } catch (error) {
+    throw error
+  }
+}
+
+module.exports = {
+  newMessage,
+  messageCategory,
+  getMessageCategory,
+  getMsgRateCate
+}

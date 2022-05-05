@@ -5,6 +5,7 @@ const controller = require('../controllers/MessageController')
 //   res.send('message ROOT!!')
 // })
 router.get('/messagecategory/:id', controller.getMessageCategory)
+router.get('/ratingcategory/:id', controller.getMsgRateCate)
 
 router.post('/new', controller.newMessage)
 router.post('/messagecategory/:id', controller.messageCategory)
