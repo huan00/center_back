@@ -40,6 +40,7 @@ Sign up and sign in, answer a few questions on your current mood. You can get ad
 ##### Back-end
 
 - PostgreSQL
+- Sequelize
 - MiddleWare
 
 ##### Front-end
