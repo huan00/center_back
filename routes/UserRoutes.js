@@ -11,6 +11,7 @@ router.get('/message/:id', controller.getUserMessage)
 router.get('/detail/:id', controller.getUserDetail)
 
 //////POST/////
+router.post('/createmood/:id', controller.createMood)
 router.post('/signup', controller.signUp)
 router.post('/following/:id', controller.followUser)
 router.post('/followmessage/:id', controller.followMessage)

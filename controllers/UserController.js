@@ -1,10 +1,20 @@
-const { User, UserFollower, Message, FollowMessage } = require('../models') //import the model
+const middleware = require('../middleware')
+const {
+  User,
+  UserFollower,
+  Message,
+  FollowMessage,
+  UserMood,
+  Category
+} = require('../models') //import the model
 // const middleware = require('../middleware')
 
 const signUp = async (req, res) => {
   try {
-    const signUpData = req.body
-    const user = await User.create(signUpData)
+    const { email, Password, firstName, lastName } = req.body
+    console.log(email, firstName, lastName, Password)
+    let password = await middleware.hashPassword(Password)
+    const user = await User.create(email, password, firstName, lastName)
     if (user) {
       return res.send(user)
     }
@@ -45,6 +55,22 @@ const followUser = async (req, res) => {
       return res.status(201).send(userFollowing)
     }
     res.status(400).send({ msg: 'Check entry info.' })
+  } catch (error) {
+    throw error
+  }
+}
+
+const createMood = async (req, res) => {
+  try {
+    const userId = req.params.id
+    const mood = req.body.moodId
+
+    const userMood = await UserMood.create({ userId: userId, moodId: mood })
+
+    if (userMood) {
+      return res.status(201).json(userMood)
+    }
+    res.status(400).send({ Msg: 'Check content' })
   } catch (error) {
     throw error
   }
@@ -101,6 +127,11 @@ const getUserDetail = async (req, res) => {
       where: { id: userId },
       include: [
         {
+          model: Category,
+          as: 'userMood',
+          though: { attributes: ['category'] }
+        },
+        {
           model: Message,
           attrubites: ['message']
         },
@@ -127,5 +158,6 @@ module.exports = {
   getUserFollowing,
   getUserMessage,
   getUserDetail,
-  followMessage
+  followMessage,
+  createMood
 }

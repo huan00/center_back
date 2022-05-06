@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'categoryMsg',
         through: models.MessageCategory
       })
+      Category.belongsToMany(models.User, {
+        foreignKey: 'moodId',
+        as: 'mood',
+        through: models.UserMood
+      })
     }
   }
   Category.init(
