@@ -2,10 +2,10 @@ const { Rating, Message } = require('../models')
 
 const newRating = async (req, res) => {
   try {
-    const msgId = req.body.messagesId
+    const msgId = req.body.messageId
     const ratingData = req.body.rating
     const rating = await Rating.create({
-      messagesId: msgId,
+      messageId: msgId,
       rating: ratingData
     })
     if (rating) {

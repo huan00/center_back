@@ -5,7 +5,8 @@ const {
   Message,
   FollowMessage,
   UserMood,
-  Mood
+  Mood,
+  Survey
 } = require('../models') //import the model
 
 //Auth
@@ -157,6 +158,10 @@ const getUserDetail = async (req, res) => {
         {
           model: Message,
           attrubites: ['message']
+        },
+        {
+          model: Survey,
+          attrubites: []
         },
         {
           model: User,

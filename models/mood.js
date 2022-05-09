@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'emotion',
         through: models.UserMood
       })
+      Mood.hasOne(models.Survey, { foreignKey: 'moodId' })
     }
   }
   Mood.init(

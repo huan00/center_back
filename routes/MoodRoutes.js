@@ -4,6 +4,7 @@ const controller = require('../controllers/MoodController')
 // router.get('', (req, res) => {
 //   res.send('Mood Root')
 // })
+router.get('/', controller.getMood)
 
 router.post('/new', controller.newMood)
 

@@ -8,6 +8,7 @@ const UserRouter = require('./routes/UserRoutes')
 const MessageRouter = require('./routes/MessageRoutes')
 const MoodRouter = require('./routes/MoodRoutes')
 const RatingRouter = require('./routes/RatingRoutes')
+const SurveyRouter = require('./routes/SurveyRoutes')
 
 app.use(cors())
 app.use(express.json())
@@ -17,6 +18,7 @@ app.use('/users', UserRouter) //connect the /user to user routes from route fold
 app.use('/messages', MessageRouter)
 app.use('/moods', MoodRouter)
 app.use('/ratings', RatingRouter)
+app.use('/surveys', SurveyRouter)
 
 app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`)

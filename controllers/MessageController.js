@@ -20,7 +20,7 @@ const messageMood = async (req, res) => {
     const moodId = req.body.moodId
 
     const messageCate = await MessageMood.create({
-      messagesId: messageId,
+      messageId: messageId,
       moodId: moodId
     })
 

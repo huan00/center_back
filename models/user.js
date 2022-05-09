@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Message, { foreignKey: 'userId' })
       User.hasMany(models.Survey, { foreignKey: 'userId' })
+      User.hasMany(models.Activity, { foreignKey: 'userId' })
 
       User.belongsToMany(models.User, {
         as: 'following',

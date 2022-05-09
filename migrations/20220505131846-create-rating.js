@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      messagesId: {
+      messageId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',

@@ -15,6 +15,16 @@ module.exports = {
       answer: {
         type: Sequelize.STRING
       },
+      reason: {
+        type: Sequelize.STRING
+      },
+      moodId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'moods',
+          key: 'id'
+        }
+      },
       userId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',

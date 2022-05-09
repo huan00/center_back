@@ -10,13 +10,21 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Survey.belongsTo(models.User, { foreignKey: 'userId' })
-      Survey.hasOne(models.Mood)
+      Survey.belongsTo(models.Mood, { foreignKey: 'moodId' })
     }
   }
   Survey.init(
     {
       question: { type: DataTypes.STRING, allowNull: false },
       answer: { type: DataTypes.STRING },
+      moodId: {
+        type: DataTypes.STRING,
+        references: {
+          model: 'moods',
+          key: 'id'
+        }
+      },
+      reason: { type: DataTypes.STRING },
       userId: {
         type: DataTypes.STRING,
         references: {

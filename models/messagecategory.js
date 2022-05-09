@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   MessageMood.init(
     {
-      messagesId: DataTypes.INTEGER,
+      messageId: DataTypes.INTEGER,
       moodId: DataTypes.INTEGER
     },
     {
