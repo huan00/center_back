@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const controller = require('../controllers/UserController') //require the controller file for the model
-// const middleware = require('../middleware')
+const middleware = require('../middleware')
 
 // router.get('', (req, res) => {
 //   res.send('this is ROOT')
@@ -14,6 +14,12 @@ router.get('/detail/:id', controller.getUserDetail)
 //auth
 router.post('/signup', controller.signUp)
 router.post('/login', controller.login)
+router.get(
+  '/session',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.CheckSession
+)
 
 router.post('/createmood/:id', controller.createMood)
 router.post('/following/:id', controller.followUser)

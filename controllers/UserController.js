@@ -48,6 +48,12 @@ const login = async (req, res) => {
   }
 }
 
+const CheckSession = async (req, res) => {
+  const { payload } = res.locals
+  console.log(payload)
+  res.send(payload)
+}
+
 const followMessage = async (req, res) => {
   try {
     const userId = req.params.id
@@ -183,6 +189,7 @@ const getUserDetail = async (req, res) => {
 module.exports = {
   signUp,
   login,
+  CheckSession,
   followUser,
   getUserFollowing,
   getUserMessage,
