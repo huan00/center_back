@@ -1,7 +1,7 @@
 'use strict'
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('message_categories', {
+    await queryInterface.createTable('message_moods', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,7 +11,7 @@ module.exports = {
       messagesId: {
         type: Sequelize.INTEGER
       },
-      categoriesId: {
+      moodsId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -25,6 +25,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('message_categories')
+    await queryInterface.dropTable('message_moods')
   }
 }

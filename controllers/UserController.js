@@ -5,20 +5,43 @@ const {
   Message,
   FollowMessage,
   UserMood,
-  Category
+  Mood
 } = require('../models') //import the model
-// const middleware = require('../middleware')
 
+//Auth
 const signUp = async (req, res) => {
   try {
-    const { email, Password, firstName, lastName } = req.body
-    console.log(email, firstName, lastName, Password)
-    let password = await middleware.hashPassword(Password)
-    const user = await User.create(email, password, firstName, lastName)
+    let { email, password, firstName, lastName } = req.body
+    console.log(email, firstName, lastName, password)
+    password = await middleware.hashPassword(password)
+    const user = await User.create({
+      email,
+      password,
+      firstName,
+      lastName
+    })
     if (user) {
       return res.send(user)
     }
     res.status(400).send('User not created. check info')
+  } catch (error) {
+    throw error
+  }
+}
+
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body
+    const user = await User.findOne({ where: { email: email }, raw: true })
+    if (user && middleware.comparePassword(user.password, password)) {
+      let payload = {
+        id: user.id,
+        email: user.email
+      }
+      let token = middleware.createToken(payload)
+      return res.send({ user: payload, token })
+    }
+    res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
   } catch (error) {
     throw error
   }
@@ -127,9 +150,9 @@ const getUserDetail = async (req, res) => {
       where: { id: userId },
       include: [
         {
-          model: Category,
+          model: Mood,
           as: 'userMood',
-          though: { attributes: ['category'] }
+          though: { attributes: ['mood'] }
         },
         {
           model: Message,
@@ -154,6 +177,7 @@ const getUserDetail = async (req, res) => {
 
 module.exports = {
   signUp,
+  login,
   followUser,
   getUserFollowing,
   getUserMessage,

@@ -1,4 +1,4 @@
-const { Message, MessageCategory, Category, Rating } = require('../models')
+const { Message, MessageMood, Mood, Rating } = require('../models')
 const rating = require('../models/rating')
 
 const newMessage = async (req, res) => {
@@ -14,14 +14,14 @@ const newMessage = async (req, res) => {
   }
 }
 
-const messageCategory = async (req, res) => {
+const messageMood = async (req, res) => {
   try {
     const messageId = req.params.id
-    const categoryId = req.body.categoryId
+    const moodId = req.body.moodId
 
-    const messageCate = await MessageCategory.create({
+    const messageCate = await MessageMood.create({
       messagesId: messageId,
-      categoriesId: categoryId
+      moodId: moodId
     })
 
     if (messageCate) {
@@ -33,14 +33,12 @@ const messageCategory = async (req, res) => {
   }
 }
 
-const getMessageCategory = async (req, res) => {
+const getMessageMood = async (req, res) => {
   try {
     const id = req.params.id
     const messageCate = await Message.findAll({
       where: { id: id },
-      include: [
-        { model: Category, as: 'messageCate', attributes: ['category'] }
-      ]
+      include: [{ model: Mood, as: 'messageCate', attributes: ['mood'] }]
     })
     if (messageCate) {
       return res.status(200).send(messageCate)
@@ -58,7 +56,7 @@ const getMsgRateCate = async (req, res) => {
     const msg = await Message.findOne({
       where: { id: id },
       include: [
-        { model: Category, as: 'messageCate', attributes: ['category'] },
+        { model: Mood, as: 'messageCate', attributes: ['mood'] },
         { model: Rating, attributes: ['rating'] }
       ]
     })
@@ -73,7 +71,7 @@ const getMsgRateCate = async (req, res) => {
 
 module.exports = {
   newMessage,
-  messageCategory,
-  getMessageCategory,
+  messageMood,
+  getMessageMood,
   getMsgRateCate
 }

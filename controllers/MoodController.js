@@ -1,9 +1,9 @@
-const { Category } = require('../models')
+const { Mood } = require('../models')
 
-const newCategory = async (req, res) => {
+const newMood = async (req, res) => {
   try {
     const newCateData = req.body
-    const newCate = await Category.create(newCateData)
+    const newCate = await Mood.create(newCateData)
     if (newCate) {
       return res.status(201).send(newCate)
     }
@@ -13,4 +13,4 @@ const newCategory = async (req, res) => {
   }
 }
 
-module.exports = { newCategory }
+module.exports = { newMood }

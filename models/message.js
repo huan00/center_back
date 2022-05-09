@@ -19,10 +19,10 @@ module.exports = (sequelize, DataTypes) => {
 
       Message.hasMany(models.Rating, { foreignKey: 'messagesId' })
 
-      Message.belongsToMany(models.Category, {
+      Message.belongsToMany(models.Mood, {
         foreignKey: 'messagesId',
         as: 'messageCate',
-        through: models.MessageCategory
+        through: models.MessageMood
       })
     }
   }

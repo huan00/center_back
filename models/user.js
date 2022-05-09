@@ -1,4 +1,3 @@
-'use strict'
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -10,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Message, { foreignKey: 'userId' })
+      User.hasMany(models.Survey, { foreignKey: 'userId' })
 
       User.belongsToMany(models.User, {
         as: 'following',
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId'
       })
 
-      User.belongsToMany(models.Category, {
+      User.belongsToMany(models.Mood, {
         foreignKey: 'userId',
         as: 'userMood',
         through: models.UserMood
@@ -38,10 +38,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      email: DataTypes.STRING,
-      password: DataTypes.STRING,
-      firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING
+      email: { type: DataTypes.STRING, allowNull: false },
+      password: { type: DataTypes.STRING, allowNull: false },
+      firstName: { type: DataTypes.STRING, allowNull: false },
+      lastName: { type: DataTypes.STRING, allowNull: false }
     },
     {
       sequelize,

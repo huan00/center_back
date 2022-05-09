@@ -4,10 +4,10 @@ const controller = require('../controllers/MessageController')
 // router.get('', (req, res) => {
 //   res.send('message ROOT!!')
 // })
-router.get('/messagecategory/:id', controller.getMessageCategory)
-router.get('/ratingcategory/:id', controller.getMsgRateCate)
+router.get('/messagemood/:id', controller.getMessageMood)
+router.get('/ratingmood/:id', controller.getMsgRateCate)
 
 router.post('/new', controller.newMessage)
-router.post('/messagecategory/:id', controller.messageCategory)
+router.post('/messageMood/:id', controller.messageMood)
 
 module.exports = router

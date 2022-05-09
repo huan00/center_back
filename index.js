@@ -6,7 +6,7 @@ const app = express()
 
 const UserRouter = require('./routes/UserRoutes')
 const MessageRouter = require('./routes/MessageRoutes')
-const CategoryRouter = require('./routes/CategoryRoutes')
+const MoodRouter = require('./routes/MoodRoutes')
 const RatingRouter = require('./routes/RatingRoutes')
 
 app.use(cors())
@@ -15,7 +15,7 @@ app.use(logger('dev'))
 
 app.use('/users', UserRouter) //connect the /user to user routes from route folder
 app.use('/messages', MessageRouter)
-app.use('/categories', CategoryRouter)
+app.use('/moods', MoodRouter)
 app.use('/ratings', RatingRouter)
 
 app.listen(PORT, () => {
