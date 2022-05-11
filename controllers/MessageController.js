@@ -129,6 +129,7 @@ const getAllMessageMood = async (req, res) => {
       where: { private: false },
       include: [
         { model: Mood, as: 'messageMood', attributes: ['mood'] },
+        { model: Message, as: 'commentMsg' },
         { model: User, attributes: ['email', 'firstName'] }
       ]
     })
