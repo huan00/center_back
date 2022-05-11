@@ -18,6 +18,9 @@ module.exports = {
       reason: {
         type: Sequelize.STRING
       },
+      activity: {
+        type: Sequelize.STRING
+      },
       moodId: {
         type: Sequelize.INTEGER,
         references: {

@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       reason: { type: DataTypes.STRING },
+      activity: { type: DataTypes.STRING },
       userId: {
         type: DataTypes.STRING,
         references: {

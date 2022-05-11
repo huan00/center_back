@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Message.hasMany(models.Rating, { foreignKey: 'messageId' })
+
       Message.belongsTo(models.User, { foreignKey: 'userId' })
 
       Message.belongsToMany(models.User, {
@@ -17,18 +19,28 @@ module.exports = (sequelize, DataTypes) => {
         through: models.FollowMessage
       })
 
-      Message.hasMany(models.Rating, { foreignKey: 'messageId' })
-
       Message.belongsToMany(models.Mood, {
         foreignKey: 'messageId',
-        as: 'messageCate',
+        as: 'messageMood',
         through: models.MessageMood
+      })
+
+      Message.belongsToMany(models.Message, {
+        foreignKey: 'messageId',
+        as: 'commentMsg',
+        through: models.MessageToMessage
+      })
+      Message.belongsToMany(models.Message, {
+        foreignKey: 'commentId',
+        as: 'postMsg',
+        through: models.MessageToMessage
       })
     }
   }
   Message.init(
     {
       message: { type: DataTypes.STRING, allowNull: false },
+      private: { type: DataTypes.BOOLEAN, allowNull: false },
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,

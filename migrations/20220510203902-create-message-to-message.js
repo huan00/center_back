@@ -1,29 +1,18 @@
 'use strict'
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('messages', {
+    await queryInterface.createTable('message_to_messages', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      message: {
-        type: Sequelize.STRING,
-        allowNull: false
+      messageId: {
+        type: Sequelize.INTEGER
       },
-      private: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        allowNull: false,
-        references: {
-          model: 'users',
-          key: 'id'
-        }
+      commentId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +25,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('messages')
+    await queryInterface.dropTable('message_to_messages')
   }
 }
