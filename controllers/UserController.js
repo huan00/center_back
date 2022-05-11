@@ -1,3 +1,4 @@
+const { hashSync } = require('bcrypt')
 const middleware = require('../middleware')
 const {
   User,
@@ -44,6 +45,31 @@ const login = async (req, res) => {
       return res.send({ user: payload, token })
     }
     res.status(401).send({ status: 'Error', msg: 'Unauthorized' })
+  } catch (error) {
+    throw error
+  }
+}
+
+const updateUser = async (req, res) => {
+  try {
+    const { id } = req.params
+    let { firstName, lastName, email, password } = req.body
+    console.log(password)
+    password = await middleware.hashPassword(password)
+
+    const updatedUser = await User.update(
+      {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password
+      },
+      { where: { id: id } }
+    )
+    if (updateUser) {
+      return res.status(201).json(updatedUser)
+    }
+    res.status(400).send({ msg: 'error updating' })
   } catch (error) {
     throw error
   }
@@ -196,5 +222,6 @@ module.exports = {
   getUserMessage,
   getUserDetail,
   followMessage,
-  createMood
+  createMood,
+  updateUser
 }

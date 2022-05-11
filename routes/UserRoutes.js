@@ -20,6 +20,12 @@ router.get(
   middleware.verifyToken,
   controller.CheckSession
 )
+router.post(
+  '/update/:id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.updateUser
+)
 
 router.post('/createmood/:id', controller.createMood)
 router.post('/following/:id', controller.followUser)
