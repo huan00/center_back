@@ -54,7 +54,7 @@ const updateUser = async (req, res) => {
   try {
     const { id } = req.params
     let { firstName, lastName, email, password } = req.body
-    console.log(password)
+
     password = await middleware.hashPassword(password)
 
     const updatedUser = await User.update(
@@ -70,6 +70,18 @@ const updateUser = async (req, res) => {
       return res.status(201).json(updatedUser)
     }
     res.status(400).send({ msg: 'error updating' })
+  } catch (error) {
+    throw error
+  }
+}
+
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const user = await User.destroy({ where: { id: id } })
+
+    res.status(200).send({ msg: 'User deleted' })
   } catch (error) {
     throw error
   }
@@ -223,5 +235,6 @@ module.exports = {
   getUserDetail,
   followMessage,
   createMood,
-  updateUser
+  updateUser,
+  deleteUser
 }

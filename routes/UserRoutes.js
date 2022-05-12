@@ -27,6 +27,13 @@ router.post(
   controller.updateUser
 )
 
+router.delete(
+  '/delete/:id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.deleteUser
+)
+
 router.post('/createmood/:id', controller.createMood)
 router.post('/following/:id', controller.followUser)
 router.post('/followmessage/:id', controller.followMessage)
