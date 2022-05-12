@@ -15,6 +15,20 @@ const postSurvey = async (req, res) => {
   }
 }
 
+const getById = async (req, res) => {
+  try {
+    const id = req.params.id
+    const survey = await Survey.findOne({ where: { id: id } })
+    if (survey) {
+      return res.status(201).json(survey)
+    }
+    res.status(400).send({ msg: 'Survey not found' })
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
-  postSurvey
+  postSurvey,
+  getById
 }
