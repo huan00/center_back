@@ -25,8 +25,8 @@ const updateRating = async (req, res) => {
     const msgId = req.body.messageId
 
     const findMsg = await Rating.findOne({ where: { messageId: msgId } })
-    const rating = findMsg.rating + 1
     if (findMsg) {
+      const rating = findMsg.rating + 1
       const updateRating = await Rating.update(
         { rating: rating },
         { where: { messageId: msgId } }

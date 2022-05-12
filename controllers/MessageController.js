@@ -130,7 +130,8 @@ const getAllMessageMood = async (req, res) => {
       include: [
         { model: Mood, as: 'messageMood', attributes: ['mood'] },
         { model: Message, as: 'commentMsg' },
-        { model: User, attributes: ['email', 'firstName'] }
+        { model: User, attributes: ['email', 'firstName'] },
+        { model: Rating }
       ]
     })
     if (msgMood) {
@@ -172,7 +173,10 @@ const getMsgToMsg = async (req, res) => {
         {
           model: Message,
           as: 'commentMsg',
-          include: [{ model: User, attributes: ['firstName'] }]
+          include: [
+            { model: User, attributes: ['firstName'] },
+            { model: Rating }
+          ]
         },
         { model: User, attributes: ['firstName', 'email', 'id'] }
       ]
