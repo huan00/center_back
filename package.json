@@ -1,13 +1,13 @@
 {
   "name": "center_back",
   "version": "1.0.0",
-  "description": "---",
+  "description": "center",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "start": "node index.js",
-    "build": "npm install && npx sequelize-cli db:migrate"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
