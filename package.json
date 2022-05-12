@@ -1,16 +1,12 @@
 {
   "name": "center_back",
   "version": "1.0.0",
-  "description": "center",
-  "engines": {
-    "node": "16.x"
-  },
+  "description": "___",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "start": "node index.js",
-    "build": "npm install && npx sequelize-cli db:migrate"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
