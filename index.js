@@ -20,6 +20,6 @@ app.use('/moods', MoodRouter)
 app.use('/ratings', RatingRouter)
 app.use('/surveys', SurveyRouter)
 
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`)
 })

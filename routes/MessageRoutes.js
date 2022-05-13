@@ -7,6 +7,7 @@ const controller = require('../controllers/MessageController')
 router.get('/messagemood/:id', controller.getMessageMood)
 router.get('/messagedetail/:id', controller.getMsgRateCate)
 router.get('/noneprivate', controller.getAllMessageMood)
+router.get('/private/:id', controller.getPrivateMessage)
 router.get('/msgtomsg/:id', controller.getMsgToMsg)
 
 router.post('/new', controller.newMessage)

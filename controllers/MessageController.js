@@ -143,6 +143,22 @@ const getAllMessageMood = async (req, res) => {
   }
 }
 
+const getPrivateMessage = async (req, res) => {
+  try {
+    const id = req.params.id
+    const msg = await Message.findAll({
+      where: { userId: id, private: true },
+      include: [{ model: Mood, as: 'messageMood', attributes: ['mood'] }]
+    })
+    if (msg) {
+      return res.status(200).json(msg)
+    }
+    res.status(400).send({ msg: 'nothing found' })
+  } catch (error) {
+    throw error
+  }
+}
+
 const getMsgRateCate = async (req, res) => {
   try {
     const id = req.params.id
@@ -218,5 +234,6 @@ module.exports = {
   JoinmessageMood,
   getAllMessageMood,
   postMsgToMsgComment,
-  getMsgToMsg
+  getMsgToMsg,
+  getPrivateMessage
 }
